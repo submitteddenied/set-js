@@ -1,7 +1,9 @@
 describe("Set.Card", function() {
   describe("FEATURES", function() {
     it("stores the features that each card has", function() {
-      expect(Set.Card.FEATURES).toEqual(['number', 'color', 'shading', 'shape']);
+      _.each(['number', 'color', 'shading', 'shape'], function(feature) {
+        expect(Set.Card.FEATURES).toContain(feature);
+      });
     });
   });
 

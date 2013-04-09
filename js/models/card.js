@@ -1,11 +1,4 @@
 Set.Card = Backbone.Model.extend({
-  initialize: function(number, color, shading, shape) {
-    this.set('number', number);
-    this.set('color', color);
-    this.set('shading', shading);
-    this.set('shape', shape);
-  },
-
   isSet: function(otherCard1, otherCard2) {
     var self = this;
     return _.reduce(Set.Card.FEATURES, function(memo, feature) {
@@ -24,7 +17,14 @@ Set.Card = Backbone.Model.extend({
     return this.get(feature) !== otherCard1.get(feature) &&
       this.get(feature) !== otherCard2.get(feature) &&
       otherCard2.get(feature) !== otherCard1.get(feature);
+  },
+
+  toString: function() {
+    var self = this;
+    return _.reduce(Set.Card.FEATURES, function(result, feature) {
+      return result + self.get(feature);
+    }, "");
   }
 });
 
-Set.Card.FEATURES = ['number', 'color', 'shading', 'shape'];
+Set.Card.FEATURES = _.keys(Set.FEATURES);
